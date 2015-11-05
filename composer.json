@@ -1,0 +1,10 @@
+{
+    "require" : {
+        "symfony/symfony" : "2.8.x-dev",
+        "stack/run" : "^1.0"
+    },
+
+    "autoload" : {
+        "psr-4" : { "Muse\\" : "src/" }
+    }
+}
