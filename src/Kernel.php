@@ -24,7 +24,11 @@ class Kernel extends \Symfony\Component\HttpKernel\Kernel
 
     public function getRootDir()
     {
-        return __DIR__ . '/..';
+        if ($this->rootDir) {
+            return $this->rootDir;
+        }
+
+        return dirname((new \ReflectionObject($this))->getFilename()) . '/..';
     }
 
     public function getCacheDir()
