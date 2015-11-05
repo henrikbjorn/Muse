@@ -37,11 +37,6 @@ class Kernel extends \Symfony\Component\HttpKernel\Kernel
         return $this->rootDir . '/var/logs/' . $this->environment;
     }
 
-    public function defaultAction()
-    {
-        return new Response('DefaultAction');
-    }
-
     protected function configureRoutes(RouteCollectionBuilder &$routes)
     {
         $routes = $routes->import($this->rootDir . '/src/Resources/routing/routing.xml', null);

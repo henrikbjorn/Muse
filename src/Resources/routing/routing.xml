@@ -5,6 +5,6 @@
         http://symfony.com/schema/routing/routing-1.0.xsd">
 
     <route id="homepage" path="/">
-        <default key="_controller">kernel:defaultAction</default>
+        <default key="_controller">Muse\Controller\DefaultController::indexAction</default>
     </route>
 </routes>
