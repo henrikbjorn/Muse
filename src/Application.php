@@ -2,7 +2,7 @@
 
 namespace Muse;
 
-use Symfony\Bundle;
+use Symfony;
 use Symfony\Component\Routing\RouteCollectionBuilder;
 
 class Application extends Kernel
@@ -10,13 +10,14 @@ class Application extends Kernel
     public function registerBundles()
     {
         $bundles = [
-            new Bundle\FrameworkBundle\FrameworkBundle(),
-            new Bundle\MonologBundle\MonologBundle(),
-            new Bundle\TwigBundle\TwigBundle(),
+            new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
+            new Symfony\Bundle\MonologBundle\MonologBundle(),
+            new Symfony\Bundle\TwigBundle\TwigBundle(),
+            new MuseBundle(),
         ];
 
         if ($this->debug) {
-            $bundles[] = new Bundle\WebProfilerBundle\WebProfilerBundle();
+            $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
         }
 
         return $bundles;
