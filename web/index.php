@@ -6,7 +6,7 @@ use function Stack\run;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$app = new Kernel('dev', true);
+$app = new Application('dev', true);
 $app->loadClassCache();
 
 run($app);

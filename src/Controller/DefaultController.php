@@ -8,6 +8,6 @@ class DefaultController
 {
     public function indexAction()
     {
-        return new Response('DefaultController::indexAction');
+        return new Response('<html><head></head><body><p>Hello</p></body></html>');
     }
 }

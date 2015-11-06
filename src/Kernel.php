@@ -5,23 +5,24 @@ namespace Muse;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Routing\RouteCollectionBuilder;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 
-use Symfony\Bundle\FrameworkBundle;
-use Symfony\Bundle\MonologBundle;
-
-class Kernel extends \Symfony\Component\HttpKernel\Kernel
+/**
+ * Abstract Kernel that used the MicroKernelTrait in order
+ * to have a simpler Application structure than Symfony Standard
+ */
+abstract class Kernel extends \Symfony\Component\HttpKernel\Kernel
 {
-    use FrameworkBundle\Kernel\MicroKernelTrait;
+    use MicroKernelTrait;
 
-    public function registerBundles()
-    {
-        return [
-            new FrameworkBundle\FrameworkBundle(),
-            new MonologBundle\MonologBundle(),
-        ];
-    }
-
+    /**
+     * By convention the rootDir is always one level up from the current direction.
+     * eg:
+     *      /Project/src/Kernel.php -> /Project
+     *      /Project/Kernel.php -> /
+     *
+     * {@inheritDoc}
+     */
     public function getRootDir()
     {
         if ($this->rootDir) {
@@ -31,21 +32,46 @@ class Kernel extends \Symfony\Component\HttpKernel\Kernel
         return dirname((new \ReflectionObject($this))->getFilename()) . '/..';
     }
 
+    /**
+     * Convention used by the "new" Symfony 3.0 layout %kernel.root_dir%/var/cache/%kernel.environment%
+     *
+     * {@inheritDoc}
+     */
     public function getCacheDir()
     {
         return $this->rootDir . '/var/cache/' . $this->environment;
     }
 
+    /**
+     * Convention used by the "new" Symfony 3.0 layout %kernel.root_dir%/var/logs/%kernel.environment%
+     * Mostly only useful when doing development as production and staging sites should log directly
+     * into syslog.
+     *
+     * {@inheritDoc}
+     */
     public function getLogDir()
     {
         return $this->rootDir . '/var/logs/' . $this->environment;
     }
 
-    protected function configureRoutes(RouteCollectionBuilder &$routes)
+    /**
+     * Always import %kernel.root_dir%/src/Resources/routing/routing.xml as the default root
+     * routing resource. As the router.resource configuration is always overriden to be the one
+     * defined in this kernel.
+     *
+     * {@inheritDoc}
+     */
+    protected function configureRoutes(RouteCollectionBuilder $routes)
     {
-        $routes = $routes->import($this->rootDir . '/src/Resources/routing/routing.xml', null);
+        $routes->mount(null, $routes->import($this->rootDir . '/src/Resources/routing/routing.xml'));
     }
 
+    /**
+     * Following our convention from Flint applications we assume the configuration is in
+     * %kernel.root_dir%/config/%kernel.environment%.yml
+     *
+     * {@inheritDoc}
+     */
     protected function configureContainer(ContainerBuilder $c, LoaderInterface $loader)
     {
         $loader->load($this->rootDir . '/config/' . $this->environment . '.yml');
