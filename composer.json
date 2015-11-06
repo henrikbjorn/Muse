@@ -8,5 +8,9 @@
     "autoload" : {
         "psr-4" : { "Muse\\" : "src/" },
         "files" : ["src/functions.php"]
+    },
+
+    "autoload-dev" : {
+        "psr-4" : { "Muse\\Tests\\" : "tests/" }
     }
 }

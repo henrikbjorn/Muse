@@ -1,0 +1,5 @@
+parameters:
+  muse.loaded_config: %kernel.environment%
+
+framework:
+  secret: notsosecret
