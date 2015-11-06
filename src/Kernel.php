@@ -2,10 +2,13 @@
 
 namespace Muse;
 
-use Symfony\Component\Config\Loader\LoaderInterface;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\Routing\RouteCollectionBuilder;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
+use Symfony\Component\Config\Loader\DelegatingLoader;
+use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\Component\Config\Loader\LoaderResolver;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Routing\RouteCollectionBuilder;
 
 /**
  * Abstract Kernel that used the MicroKernelTrait in order
@@ -87,14 +90,14 @@ abstract class Kernel extends \Symfony\Component\HttpKernel\Kernel
      *
      * {@inheritDoc}
      */
-    protected function getContainerBuilder()
+    protected function getContainerLoader(ContainerInterface $container)
     {
-        $builder = parent::getContainerBuilder();
+        $loader = parent::getContainerLoader($container);
 
-        // create a netgroup containerbuilder where the parameters are loaded from
-        // the pco.json file instead.
-        $builder->merge(new ContainerBuilder());
+        //$loader->getResolver()->addLoader(
+        //    new PcoFileLoader(new FileLocator($this))
+        //);
 
-        return $builder;
+        return $loader;
     }
 }
