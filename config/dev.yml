@@ -1,5 +1,5 @@
 imports:
-  - { resource: ../src/Resources/config/config.yml }
+  - { resource: "@MuseBundle/Resources/config/config.yml" }
 
 framework:
   profiler: { only_exceptions: false }

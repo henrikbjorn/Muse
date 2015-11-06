@@ -58,18 +58,6 @@ abstract class Kernel extends \Symfony\Component\HttpKernel\Kernel
     }
 
     /**
-     * Always import %kernel.root_dir%/src/Resources/routing/routing.xml as the default root
-     * routing resource. As the router.resource configuration is always overriden to be the one
-     * defined in this kernel.
-     *
-     * {@inheritDoc}
-     */
-    protected function configureRoutes(RouteCollectionBuilder $routes)
-    {
-        $routes->mount(null, $routes->import($this->rootDir . '/src/Resources/routing/routing.xml'));
-    }
-
-    /**
      * Following our convention from Flint applications we assume the configuration is in
      * %kernel.root_dir%/config/%kernel.environment%.yml
      *

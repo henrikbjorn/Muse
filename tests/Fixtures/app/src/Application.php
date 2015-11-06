@@ -3,6 +3,7 @@
 namespace Muse\Tests\Fixtures\app\src;
 
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
+use Symfony\Bundle\TwigBundle\TwigBundle;
 
 class Application extends \Muse\Kernel
 {
@@ -10,6 +11,7 @@ class Application extends \Muse\Kernel
     {
         return [
             new FrameworkBundle(),
+            new TwigBundle(),
         ];
     }
 }

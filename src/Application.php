@@ -25,7 +25,7 @@ class Application extends Kernel
 
     protected function configureRoutes(RouteCollectionBuilder $routes)
     {
-        parent::configureRoutes($routes);
+        $routes->mount(null, $routes->import('@MuseBundle/Resources/routing/routing.xml'));
 
         if ($this->debug) {
             $routes->mount('/_wdt', $routes->import('@WebProfilerBundle/Resources/config/routing/wdt.xml'));

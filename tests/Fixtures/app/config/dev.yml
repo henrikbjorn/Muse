@@ -3,3 +3,5 @@ parameters:
 
 framework:
   secret: notsosecret
+  templating:
+    engines: ['twig']

@@ -1,2 +1,0 @@
-imports:
-  - { resource: ../src/Resources/config/config.yml }
