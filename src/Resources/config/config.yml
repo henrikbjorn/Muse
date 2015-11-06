@@ -1,2 +1,6 @@
 framework:
   secret: random-secret
+
+twig:
+  paths:
+    "%kernel.root_dir%/src/Resources/views": Muse

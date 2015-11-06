@@ -4,10 +4,10 @@ namespace Muse\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 
-class DefaultController
+class DefaultController extends \Symfony\Bundle\FrameworkBundle\Controller\Controller
 {
     public function indexAction()
     {
-        return new Response('<html><head></head><body><p>Hello</p></body></html>');
+        return $this->render('@Muse/Default/index.html.twig');
     }
 }

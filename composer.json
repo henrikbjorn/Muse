@@ -6,6 +6,7 @@
     },
 
     "autoload" : {
-        "psr-4" : { "Muse\\" : "src/" }
+        "psr-4" : { "Muse\\" : "src/" },
+        "files" : ["src/functions.php"]
     }
 }
