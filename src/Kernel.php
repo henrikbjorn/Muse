@@ -76,4 +76,25 @@ abstract class Kernel extends \Symfony\Component\HttpKernel\Kernel
     {
         $loader->load($this->rootDir . '/config/' . $this->environment . '.yml');
     }
+
+    /**
+     * When we use the ng platform, our parameters are defined in pco.json
+     * these should be available to the container as ordinary parameters, so
+     * they can be used in configurations.
+     *
+     * So we create a specialized ContainerBuilder and merge its parameters
+     * with the original.
+     *
+     * {@inheritDoc}
+     */
+    protected function getContainerBuilder()
+    {
+        $builder = parent::getContainerBuilder();
+
+        // create a netgroup containerbuilder where the parameters are loaded from
+        // the pco.json file instead.
+        $builder->merge(new ContainerBuilder());
+
+        return $builder;
+    }
 }
