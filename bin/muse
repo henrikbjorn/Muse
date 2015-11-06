@@ -1,0 +1,11 @@
+#!/usr/bin/env php
+<?php
+
+namespace Muse;
+
+use Symfony\Bundle\FrameworkBundle\Console\Application as Console;
+
+require __DIR__ . '/../vendor/autoload.php';
+
+(new Console(new Application('dev', true)))
+    ->run();

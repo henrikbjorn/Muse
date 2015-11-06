@@ -15,7 +15,7 @@ class Application extends Kernel
             new Bundle\TwigBundle\TwigBundle(),
         ];
 
-        if (is_debug($this->environment)) {
+        if ($this->debug) {
             $bundles[] = new Bundle\WebProfilerBundle\WebProfilerBundle();
         }
 
@@ -26,7 +26,7 @@ class Application extends Kernel
     {
         parent::configureRoutes($routes);
 
-        if (is_debug($this->environment)) {
+        if ($this->debug) {
             $routes->mount('/_wdt', $routes->import('@WebProfilerBundle/Resources/config/routing/wdt.xml'));
             $routes->mount('/_profiler', $routes->import('@WebProfilerBundle/Resources/config/routing/profiler.xml'));
         }
