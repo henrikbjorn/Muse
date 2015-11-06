@@ -41,6 +41,7 @@ class KernelTest extends \PHPUnit_Framework_TestCase
         $app = new Application($env, true);
         $app->boot();
 
+        $this->assertEquals($app->getEnvironment(), $app->getContainer()->getParameter('muse.loaded_config'));
     }
 
     public function environmentDataProvider()
