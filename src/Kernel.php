@@ -58,6 +58,16 @@ abstract class Kernel extends \Symfony\Component\HttpKernel\Kernel
     }
 
     /**
+     * A noop in order to not require an implementation. For building
+     * clean console commands without the router.
+     *
+     * {@inheritDoc}
+     */
+    protected function configureRoutes(RouteCollectionBuilder $builder)
+    {
+    }
+
+    /**
      * Following our convention from Flint applications we assume the configuration is in
      * %kernel.root_dir%/config/%kernel.environment%.yml
      *
