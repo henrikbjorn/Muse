@@ -32,7 +32,7 @@ abstract class Kernel extends \Symfony\Component\HttpKernel\Kernel
             return $this->rootDir;
         }
 
-        return dirname((new \ReflectionObject($this))->getFilename()) . '/..';
+        return dirname((new \ReflectionClass($this))->getFilename()) . '/..';
     }
 
     /**
@@ -67,35 +67,8 @@ abstract class Kernel extends \Symfony\Component\HttpKernel\Kernel
     {
     }
 
-    /**
-     * Following our convention from Flint applications we assume the configuration is in
-     * %kernel.root_dir%/config/%kernel.environment%.yml
-     *
-     * {@inheritDoc}
-     */
-    protected function configureContainer(ContainerBuilder $c, LoaderInterface $loader)
+    protected function configureContainer(ContainerBuilder $builder, LoaderInterface $loader)
     {
         $loader->load($this->rootDir . '/config/' . $this->environment . '.yml');
-    }
-
-    /**
-     * When we use the ng platform, our parameters are defined in pco.json
-     * these should be available to the container as ordinary parameters, so
-     * they can be used in configurations.
-     *
-     * So we create a specialized ContainerBuilder and merge its parameters
-     * with the original.
-     *
-     * {@inheritDoc}
-     */
-    protected function getContainerLoader(ContainerInterface $container)
-    {
-        $loader = parent::getContainerLoader($container);
-
-        //$loader->getResolver()->addLoader(
-        //    new PcoFileLoader(new FileLocator($this))
-        //);
-
-        return $loader;
     }
 }

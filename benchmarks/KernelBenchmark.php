@@ -9,9 +9,9 @@ class KernelBenchmark extends \Athletic\AthleticEvent
 {
     public function classSetUp()
     {
-        $this->app = new Application('dev', false);
+        $this->app = new Application('prod', false);
+        $this->app->loadClassCache();
         $this->app->boot();
-
     }
 
     /**
@@ -19,6 +19,6 @@ class KernelBenchmark extends \Athletic\AthleticEvent
      */
     public function homepage()
     {
-        $this->app->handle(Request::create('/'));
+        $this->app->handle(Request::create('/'), 1, false);
     }
 }

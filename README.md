@@ -47,3 +47,25 @@ We use YAML as there isn't any support for JSON when loading for the DependencyI
 component.
 
 For more information read about the new `MicroKernelTrait` that can be found in `FrameworkBundle`.
+
+
+Benchmarks
+----------
+
+Because why not? These are VERY simple and shouldn't be taken seriously.
+
+```
+Muse\Benchmarks\KernelBenchmark
+    Method Name   Iterations    Average Time      Ops/second
+    --------  ------------  --------------    -------------
+    homepage: [10,000    ] [0.0002397856474] [4,170.39139]
+```
+
+and for fun here is the same for Symfony Standard (not that it uses more bundles etc.)
+
+```
+Benchmarks\AppKernelBenchmark
+    Method Name   Iterations    Average Time      Ops/second
+    --------  ------------  --------------    -------------
+    homepage: [10,000    ] [0.0005079732418] [1,968.60763]
+```

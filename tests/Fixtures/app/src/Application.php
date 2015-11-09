@@ -4,6 +4,7 @@ namespace Muse\Tests\Fixtures\app\src;
 
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\TwigBundle\TwigBundle;
+use Symfony\Component\Routing\RouteCollectionBuilder;
 
 class Application extends \Muse\Kernel
 {
@@ -13,5 +14,10 @@ class Application extends \Muse\Kernel
             new FrameworkBundle(),
             new TwigBundle(),
         ];
+    }
+
+    protected function configureRoutes(RouteCollectionBuilder $routes)
+    {
+        $routes->mount(null, $routes->import(__DIR__ . '/Resources/routing/routing.xml'));
     }
 }

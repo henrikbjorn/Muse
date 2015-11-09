@@ -5,3 +5,9 @@ framework:
   secret: notsosecret
   templating:
     engines: ['twig']
+
+twig:
+  debug: "%kernel.debug%"
+  strict_variables: "%kernel.debug%"
+  paths:
+    "%kernel.root_dir%/src/Resources/views": Fixtures
