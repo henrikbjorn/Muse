@@ -25,11 +25,11 @@ class Application extends Kernel
 
     protected function configureRoutes(RouteCollectionBuilder $routes)
     {
-        $routes->mount(null, $routes->import('@MuseBundle/Resources/routing/routing.xml'));
+        $routes->import('@MuseBundle/Resources/routing/routing.xml');
 
         if ($this->debug) {
-            $routes->mount('/_wdt', $routes->import('@WebProfilerBundle/Resources/config/routing/wdt.xml'));
-            $routes->mount('/_profiler', $routes->import('@WebProfilerBundle/Resources/config/routing/profiler.xml'));
+            $routes->import('@WebProfilerBundle/Resources/config/routing/wdt.xml', '/_wdt');
+            $routes->import('@WebProfilerBundle/Resources/config/routing/profiler.xml', '/_profiler');
         }
     }
 }

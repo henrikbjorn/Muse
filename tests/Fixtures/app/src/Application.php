@@ -18,6 +18,6 @@ class Application extends \Muse\Kernel
 
     protected function configureRoutes(RouteCollectionBuilder $routes)
     {
-        $routes->mount(null, $routes->import(__DIR__ . '/Resources/routing/routing.xml'));
+        $routes->import(__DIR__ . '/Resources/routing/routing.xml');
     }
 }

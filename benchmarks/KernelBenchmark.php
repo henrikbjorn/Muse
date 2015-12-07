@@ -15,7 +15,7 @@ class KernelBenchmark extends \Athletic\AthleticEvent
     }
 
     /**
-     * @iterations 10000
+     * @iterations 25000
      */
     public function homepage()
     {
