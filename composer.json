@@ -15,9 +15,8 @@
     },
 
     "require" : {
-        "symfony/symfony" : "2.8.x-dev",
-        "symfony/monolog-bundle" : "^2.8",
-        "stack/run" : "^1.0"
+        "symfony/symfony" : "^3.0",
+        "symfony/monolog-bundle" : "^2.8"
     },
 
     "require-dev" : {
