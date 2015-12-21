@@ -17,9 +17,5 @@
     "require" : {
         "symfony/symfony" : "^3.0",
         "symfony/monolog-bundle" : "^2.8"
-    },
-
-    "require-dev" : {
-        "athletic/athletic" : "^0.1"
     }
 }

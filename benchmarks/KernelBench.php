@@ -5,9 +5,12 @@ namespace Muse\Benchmarks;
 use Muse\Tests\Fixtures\app\src\Application;
 use Symfony\Component\HttpFoundation\Request;
 
-class KernelBenchmark extends \Athletic\AthleticEvent
+/**
+ * @BeforeMethods({"initApplication"})
+ */
+class KernelBench
 {
-    public function classSetUp()
+    public function initApplication()
     {
         $this->app = new Application('prod', false);
         $this->app->loadClassCache();
@@ -15,9 +18,9 @@ class KernelBenchmark extends \Athletic\AthleticEvent
     }
 
     /**
-     * @iterations 25000
+     * @Revs(25000)
      */
-    public function homepage()
+    public function benchHomepage()
     {
         $this->app->handle(Request::create('/'), 1, false);
     }
